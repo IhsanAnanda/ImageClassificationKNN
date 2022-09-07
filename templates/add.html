@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Main APP</title>
+    <style>
+        table{
+            width: 80%;
+            border: 5px solid;
+            border-collapse: separate;
+            margin-top: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+        th{
+            background-color: rgba(255, 255, 255, 0.9);;
+            color: black
+        }
+        .bg{
+            background-image: url("{{url_for('static', filename='css/bg.png')}}");
+        }
+        td, th{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body class="bg">
+
+
+<table class="fixed" style="background-color:rgba(255, 255, 255, 0.9);">
+    <col width="40%">
+    <col width="60%">
+    <tr><th style="border-bottom: 5px solid;"><h2>Tambah Dataset</h2></th>
+        <th style="border-bottom: 5px solid; text-align: right;">
+            <a class="fas fa-chevron-left fa-2x aqua-gradient-text mr-2" href="/KelolaData";?></a>
+            <a class="fas fa-home fa-2x aqua-gradient-text mr-2" href="/";?></a>
+        </th>
+    </tr>
+    <tr>
+        <td><h4>Upload Gambar Not Balok (*.jpg/*.jpeg):</h4><br>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" class="form-control" name="query_img" accept="image/png, image/jpeg, image/jpg"><br>
+        </td>
+
+    </tr>
+    <tr>
+<!--        <td>Nama Kelas Target : <input type="text" name="nama"></td>-->
+        <td>Nama Kelas Target :
+            <select name="target" id="target">
+                {% for d in data_kelas %}
+                    <option value={{d.target}}>{{d.target}}</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <input type="submit" name="submit" value="Submit" class="btn btn-green btn-sm" onclick="">
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    </form>
+        <tr>
+        {% if query_path %}
+        <td>
+            <h5>Citra Asli</h5>
+            <img src="data:;base64,{{ query_path }}" width="400px"> <br>
+            <h5>Citra Grayscale</h5>
+            <img src="data:;base64,{{ query_path_bw }}" width="400px">
+        </td>
+        <td style="vertical-align: top; text-align: left;">
+            Nama File<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{filename}}<br>
+            Target Kelas <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{target}}<br>
+            Dissimilarity 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][0]}}<br>
+            Dissimilarity 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][1]}}<br>
+            Dissimilarity 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][2]}}<br>
+            Dissimilarity 135<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[0][3]}}<br>
+            Correlation 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][4]}}<br>
+            Correlation 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][5]}}<br>
+            Correlation 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][6]}}<br>
+            Correlation 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][7]}}<br>
+            Homogeneity 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][8]}}<br>
+            Homogeneity 45<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[0][9]}}<br>
+            Homogeneity 90<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[0][10]}}<br>
+            Homogeneity 135<span>&#176;&nbsp;</span>: {{data[0][11]}}<br>
+            Contrast 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][12]}}<br>
+            Contrast 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][13]}}<br>
+            Contrast 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][14]}}<br>
+            Contrast 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][15]}}<br>
+            ASM 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][16]}}<br>
+            ASM 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][17]}}<br>
+            ASM 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][18]}}<br>
+            ASM 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][19]}}<br>
+            Energy 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][20]}}<br>
+            Energy 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][21]}}<br>
+            Energy 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][22]}}<br>
+            Energy 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][23]}}<br>
+            Target Kelas <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{target}}<br>
+            Data Baru Telah Berhasil Ditambahkan!
+        </td>
+        {% endif %}
+    </tr>
+</table>
+
+</body>
+</html>

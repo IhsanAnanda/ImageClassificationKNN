@@ -1,0 +1,22 @@
+{% extends 'view.html' %}
+
+{% block body %}
+<tr class="borderKecil">
+    <th class="borderKecil font1"><b>Id</b></th>
+    <th class="borderKecil font1"><b>Filename</b></th>
+    <th class="borderKecil font1"><b>Class</b></th>
+    <th class="borderKecil font1"><b>Opsi</b></th>
+</tr>
+{% for item in data %}
+<tr>
+    <td class="borderKecil spasi1">{{ item.id }}</td>
+    <td class="borderKecil spasi1">{{ item.filename }}</td>
+    <td class="borderKecil spasi1">{{ item.target }}</td>
+    <td class="borderKecil spasi1">
+        <a class="far fa-trash-alt fa-lg red-text mr-2" href="/delete/{{item.id}}"></a>
+        <a class="fas fa-info fa-lg blue-text mr-2" href="/detail/{{item.id}}"></a>
+    </td>
+</tr>
+{% endfor %}
+
+{% endblock %}

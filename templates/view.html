@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Kelola Data</title>
+    <style>
+        .layout{
+            width: 80%;
+            border: 5px solid;
+            border-collapse: separate;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+        .header{
+            background-color: rgba(255, 255, 255, 0.9);;
+            color: black
+        }
+        .bg{
+            background-image: url("{{url_for('static', filename='css/bg.png')}}");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .spasi{
+            padding: 10px 20px;
+        }
+        .spasi1{
+            padding: 2px 8px;
+        }
+        .borderKecil{
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        .font1{
+            padding: 8px 5px;
+            font-size: 16px;
+            font-weight: 450;
+        }
+    </style>
+</head>
+<body class="bg">
+
+<form>
+<table class="fixed table-hover layout" style="background-color:rgba(255, 255, 255, 0.9);">
+    <col width="40%">
+    <col width="60%">
+    <tr>
+        <th class="spasi header"><h3>Data Latih</h3>
+        </th>
+        <th class="spasi header" style="text-align: right;">
+            <a class="fas fa-chevron-left fa-2x aqua-gradient-text mr-2" href="/";?></a>
+            <a class="fas fa-plus-circle fa-2x aqua-gradient-text mr-2" href="/TambahData";?></a>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: 5px solid;">
+        <table class="borderKecil" style="width: 100%;">
+
+            {% block body %}{% endblock %}
+        </table>
+        </td>
+    </tr>
+    <tr>
+
+    </tr>
+</table>
+</form>
+</body>
+</html>

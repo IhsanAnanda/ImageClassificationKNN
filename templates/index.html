@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Main APP</title>
+    <style>
+        table{
+            width: 80%;
+            border: 5px solid;
+            border-collapse: separate;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+        th{
+            background-color: rgba(255, 255, 255, 0.9);;
+            color: black
+        }
+        .bg{
+            background-image: url("{{url_for('static', filename='css/bg.png')}}");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        td, th{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body class="bg">
+
+
+<table class="fixed" style="background-color:rgba(255, 255, 255, 0.9);">
+    <col width="40%">
+    <col width="60%">
+    <tr><th colspan="2" style="border-bottom: 5px solid;"><center><h2>Klasifikasi Citra Not Balok</h2></center></th></tr>
+    <tr>
+        <td><h4>Upload Gambar Not Balok (*.jpg/*.jpeg):</h4><br>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" class="form-control" name="query_img" accept="image/png, image/jpeg, image/jpg"><br>
+        </td>
+        <td>
+        <br>
+        <input type="submit" name="submit" value="Submit" class="btn btn-green btn-sm" onclick="">
+        </td>
+    </tr>
+        <tr class="align-top">
+        <td>Pilih Nilai K :
+            <select name="nilai_k" id="nilai_k">
+<!--                <option value="1">1</option>-->
+                <option value="3" >3</option>
+                <option value="5" >5</option>
+                <option value="7" selected="selected">7</option>
+            </select>
+            <br>
+            Nama Kelas Target :
+            <select name="target" id="target">
+                <option value="?" selected="selected">?</option>
+                {% for d in data_kelas %}
+                <option value={{d.target}}>{{d.target}}</option>
+                {% endfor %}
+            </select>
+        </td>
+        {% if ext %}
+        <td><h4>{{ext}}</h4>
+        </td>
+        {% endif %}
+        {% if query_path %}
+        <td><h4>Hasil Klasifikasi<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{hasil}}</h4>
+        </td>
+        </tr>
+    <tr>
+        <td>
+            <h5>Citra Asli</h5>
+            <img src="data:;base64,{{ query_path }}" width="400px"> <br> <br>
+            <h5>Citra Grayscale</h5>
+            <img src="data:;base64,{{ query_path_bw }}" width="400px">
+        </td>
+        <td style="vertical-align: top; text-align: left;">
+            Nama File<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{filename}}<br>
+            Nilai K<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> : {{nilai_k}}<br>
+            Dissimilarity 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[0][0]}}<br>
+            Dissimilarity 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[1][0]}}<br>
+            Dissimilarity 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[2][0]}}<br>
+            Dissimilarity 135<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[3][0]}}<br>
+            Correlation 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[4][0]}}<br>
+            Correlation 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[5][0]}}<br>
+            Correlation 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[6][0]}}<br>
+            Correlation 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[7][0]}}<br>
+            Homogeneity 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[8][0]}}<br>
+            Homogeneity 45<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[9][0]}}<br>
+            Homogeneity 90<span>&#176;&nbsp;&nbsp;&nbsp;</span>: {{data[10][0]}}<br>
+            Homogeneity 135<span>&#176;&nbsp;</span>: {{data[11][0]}}<br>
+            Contrast 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[12][0]}}<br>
+            Contrast 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[13][0]}}<br>
+            Contrast 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[14][0]}}<br>
+            Contrast 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[15][0]}}<br>
+            ASM 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[16][0]}}<br>
+            ASM 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[17][0]}}<br>
+            ASM 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[18][0]}}<br>
+            ASM 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[19][0]}}<br>
+            Energy 0<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[20][0]}}<br>
+            Energy 45<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[21][0]}}<br>
+            Energy 90<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[22][0]}}<br>
+            Energy 135<span>&#176;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: {{data[23][0]}}<br>
+        </td>
+        {% endif %}
+    </tr>
+        </form>
+    <tr>
+        <td>
+        <a class="btn btn-primary btn-sm" style="background-color: #55acee;" href="/KelolaData">
+        <i class="fas fa-list-alt mr-2"></i>
+            Kelola Data Latih
+        </a>
+        </td>
+        <td>
+        <a class="btn btn-primary btn-sm" style="background-color: #55acee;" href="/ExportAcc">
+        <i class="fas fa-list-alt mr-2"></i>
+            Hasil Akurasi
+        </a>
+        </td>
+    </tr>
+    <tr>
+
+    </tr>
+</table>
+</body>
+</html>

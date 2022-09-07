@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Update Data</title>
+    <style>
+        .layout{
+            width: 80%;
+            border: 5px solid;
+            border-collapse: separate;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+        .header{
+            background-color: rgba(255, 255, 255, 0.9);;
+            color: black
+        }
+        .bg{
+            background-image: url("{{url_for('static', filename='css/bg.png')}}");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .spasi{
+            padding: 10px 20px;
+        }
+        .spasi1{
+            padding: 2px 8px;
+        }
+        .borderKecil{
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        .font1{
+            padding: 8px 5px;
+            font-size: 16px;
+            font-weight: 450;
+        }
+    </style>
+</head>
+<body class="bg">
+
+<form>
+<table class="fixed table-hover layout" style="background-color:rgba(255, 255, 255, 0.9);">
+    <col width="40%">
+    <col width="60%">
+    <tr>
+        <th class="spasi header"><h3>Detail Dataset</h3>
+        </th>
+        <th class="spasi header" style="text-align: right;">
+           <a class="fas fa-chevron-left fa-2x aqua-gradient-text mr-2" href="/KelolaData";?></a>
+            <a class="fas fa-home fa-2x aqua-gradient-text mr-2" href="/";?></a>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: 5px solid;">
+        <div class="content">
+            <div class="form">
+                <form action="/update/{{data_to_update.id}}" method="POST">
+                    <table class="borderKecil" style="width: 100%;">
+                        <col width="70px">
+                        <col width="2px">
+                        <col width="200px">
+                        <tr>
+                            <td class="spasi">ID</td>
+                            <td>:</td>
+                            <td>{{data_to_update.id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Filename</td>
+                            <td>:</td>
+                            <td>{{data_to_update.filename}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Dissimilarity 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.dissimilarity_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Dissimilarity 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.dissimilarity_45}}</td>
+                        </tr>
+                         <tr>
+                            <td class="spasi">Dissimilarity 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.dissimilarity_90}}</td>
+                        </tr>
+                         <tr>
+                            <td class="spasi">Dissimilarity 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.dissimilarity_135}}</td>
+                        </tr>
+                         <tr>
+                            <td class="spasi">Correlation 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.correlation_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Correlation 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.correlation_45}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Correlation 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.correlation_90}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Correlation 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.correlation_135}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Homogeneity 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.homogeneity_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Homogeneity 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.homogeneity_45}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Homogeneity 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.homogeneity_90}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Homogeneity 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.homogeneity_135}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Contrast 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.contrast_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Contrast 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.contrast_45}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Contrast 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.contrast_90}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Contrast 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.contrast_135}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Asm 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.asm_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Asm 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.asm_45}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Asm 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.asm_90}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Asm 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.asm_135}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Energy 0<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.energy_0}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Energy 45<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.energy_45}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Energy 90<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.energy_90}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Energy 135<span>&#176;</span> </td>
+                            <td>:</td>
+                            <td>{{data_to_update.energy_135}}</td>
+                        </tr>
+                        <tr>
+                            <td class="spasi">Kelas</td>
+                            <td>:</td>
+                            <td>{{data_to_update.target}}</td>
+                        </tr>
+<!--                        <tr>-->
+<!--                            <td colspan="3" style="text-align: center"><input type="submit" name="submit" value="Submit" class="btn btn-green btn-sm"-->
+<!--                            onclick=""></td>-->
+<!--                        </tr>-->
+
+                    </table>
+                </form>
+            </div>
+        </div>
+        </td>
+    </tr>
+    <tr>
+
+    </tr>
+</table>
+</form>
+</body>
+</html>
